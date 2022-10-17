@@ -1,6 +1,7 @@
-import { Grid, Loading, Text } from '@nextui-org/react'
+import { Grid, Text } from '@nextui-org/react'
 
 import useAllAmiibo from '../hooks/useAmiibo'
+import Loading from '../components/Loading'
 import AmiiboCard from '../components/AmiiboCard'
 
 const Home = () => {
@@ -8,15 +9,15 @@ const Home = () => {
 
   if (loading){
     return (
-      <div>
-        <Loading size='xl'/>
-      </div>
+        <Loading text='Loading Amiibos'/>
     )
   }
   
   return (
     <div>
-      <Text>Amiibo Lista</Text>
+      <Text h2 style={{
+        textAlign: 'center'
+      }}>Amiibos: {amiiboList.length}</Text>
       <Grid.Container justify='space-around'>
       {amiiboList.map(amiibo => <AmiiboCard key={amiibo.tail} amiibo={amiibo}/>)}
       </Grid.Container>
