@@ -1,5 +1,4 @@
 import { Navbar, Text } from "@nextui-org/react";
-import Link from "next/link";
 
 const Header = () => {
     return(
