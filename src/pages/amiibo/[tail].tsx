@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Head from "next/head";
 import {
   Text,
@@ -8,19 +7,11 @@ import {
   Grid,
   Spacer,
 } from "@nextui-org/react";
-
-import useOneAmiibo from "../../hooks/useOneAmiibo";
-import Loading from "../../components/Loading";
+import axios from "axios";
 import TypeBadge from "../../components/TypeBadge";
+import { amiiboProps } from "../../utils/types";
 
-const AmiiboDetails = () => {
-  const router = useRouter();
-  const { tail } = router.query;
-  const { amiibo, loading } = useOneAmiibo(tail as string);
-
-  if (loading) {
-    return <Loading text="Loading Amiibo" />;
-  }
+const AmiiboDetails = ({amiibo}:{amiibo: amiiboProps}) => {
 
   if (!amiibo) {
     return (
@@ -79,6 +70,22 @@ const AmiiboDetails = () => {
       <Divider />
     </Container>
   );
+};
+
+export const getServerSideProps = async ({
+  query: { tail },
+}: {
+  query: { tail: string };
+}) => {
+  const { data }: { data: { amiibo: amiiboProps[] } } = await axios.get(
+    `https://amiiboapi.com/api/amiibo/?tail=${tail}`
+  );
+
+  return {
+    props: {
+      amiibo: data.amiibo[0],
+    },
+  };
 };
 
 export default AmiiboDetails;
