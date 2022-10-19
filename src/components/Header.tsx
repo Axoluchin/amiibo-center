@@ -1,10 +1,15 @@
+import Link from "next/link";
 import { Navbar, Text } from "@nextui-org/react";
 
 const Header = () => {
   return (
     <Navbar isBordered variant="static">
       <Navbar.Brand>
-        <Text h2>Amiibo Center</Text>
+        <Link href="/">
+          <Text h2 style={{
+            cursor: 'pointer'
+          }}>Amiibo Center</Text>
+        </Link>
       </Navbar.Brand>
       <Navbar.Content hideIn="xs">
         <Navbar.Link href="/">All Amiibos</Navbar.Link>

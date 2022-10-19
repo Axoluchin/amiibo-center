@@ -1,8 +1,9 @@
+import { CSSProperties } from "react";
 import { Badge } from "@nextui-org/react";
 
 import { amiiboTypes } from "../utils/types";
 
-const TypeBadge = ({type}: {type: amiiboTypes}) => {
+const TypeBadge = ({type, style}: {type: amiiboTypes, style?: CSSProperties}) => {
 
     const colorBadge = type === 'Figure' ? 'primary'
     : type === 'Card' ? 'secondary'
@@ -13,7 +14,7 @@ const TypeBadge = ({type}: {type: amiiboTypes}) => {
     return(
         <Badge
         color={colorBadge}
-        style={{flex: 1}}
+        style={{flex: 1, ...style}}
         >
             {type}
         </Badge>

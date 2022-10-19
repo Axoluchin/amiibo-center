@@ -1,4 +1,5 @@
-import { Card, Grid, Row, Spacer, Text } from "@nextui-org/react";
+import Router from "next/router";
+import { Card, Grid, Spacer, Text } from "@nextui-org/react";
 
 import TypeBadge from "./TypeBadge";
 import { amiiboProps } from "../utils/types";
@@ -12,6 +13,7 @@ const AmiiboCard = ({ amiibo }: { amiibo: amiiboProps }) => {
         maxWidth: "350px",
         margin: "8px",
       }}
+      onClick={()=> Router.push(`/amiibo/${amiibo.tail}`)}
     >
       <Card.Header
         style={{
